@@ -22,7 +22,7 @@ vector<string> balancedParenthesis(int N) {
     return result;
 }
 int main() {
-    vector<string> result = balancedParenthesis(5);
+    vector<string> result = balancedParenthesis(3);
     for (string res : result) {
         cout << res << "\n";
     }
