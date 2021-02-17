@@ -20,7 +20,7 @@ void generatePossibleCombinationsHelper(string digits, vector<string>& result, i
     }
 
 }
-vector<string> generatePossibleCombinations(string digits) {
+vector<string> generatePossibleCombinations(string digits) { 
     if (digits.empty()) {
         return vector<string>{};
     }
