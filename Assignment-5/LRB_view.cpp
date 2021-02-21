@@ -119,6 +119,57 @@ void bottomview(TreeNode * root,map<int,pair<int,int>>&m,int dist,int level)
     bottomview(root->right,m,dist+1,level+1);
 
 }
+void top_view(TreeNode *root)
+{
+    if (root == NULL)
+       return;
+    queue<pair<TreeNode*,int>> q;
+    q.push({root,0});
+    map<int,char> m;
+    
+    while (!q.empty())
+    {
+        TreeNode* curr = q.front().first;
+        int dist = q.front().second;
+        q.pop();
+
+        if (m.count(dist) == 0)
+            m[dist] = curr->val;
+
+        if (curr->left != NULL)
+            q.push({curr->left, dist-1});
+        if (curr->right != NULL)
+            q.push({curr->right, dist+1});
+    }
+    for (auto i : m)
+        cout << i.second << " ";
+}
+
+void bottom_view(TreeNode *root)
+{
+    if (root == NULL)
+       return;
+    queue<pair<TreeNode*,int>> q;
+    q.push({root,0});
+    map<int,char> m;
+
+    while (!q.empty())
+    {
+        TreeNode* curr = q.front().first;
+        int dist = q.front().second;
+        q.pop();
+
+        m[dist] = curr->val;
+
+        if (curr->left != NULL)
+            q.push({curr->left, dist-1});
+        if (curr->right != NULL)
+            q.push({curr->right, dist+1});
+    }
+    for (auto i : m)
+        cout << i.second << " ";
+}
+
 
 int main() 
 {
