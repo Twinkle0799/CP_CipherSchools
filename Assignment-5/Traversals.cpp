@@ -228,6 +228,7 @@ int main() {
     Inorder(root);
     cout<<endl;
     Postorder(root);
+    cout<<Height(root)<<endl;
 
     return 0;
 }
