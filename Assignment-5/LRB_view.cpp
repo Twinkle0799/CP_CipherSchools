@@ -134,7 +134,7 @@ void top_view(TreeNode *root)
         q.pop();
 
         if (m.count(dist) == 0)
-            m[dist] = curr->val;
+            m[dist] = curr->data;
 
         if (curr->left != NULL)
             q.push({curr->left, dist-1});
@@ -159,7 +159,7 @@ void bottom_view(TreeNode *root)
         int dist = q.front().second;
         q.pop();
 
-        m[dist] = curr->val;
+        m[dist] = curr->data;
 
         if (curr->left != NULL)
             q.push({curr->left, dist-1});
