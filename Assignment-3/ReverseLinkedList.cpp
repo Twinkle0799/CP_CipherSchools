@@ -95,7 +95,7 @@ int main()
         sll.insertatlast(i);
     }
     sll.printlist();
-   // sll.reverseIter();
+    sll.reverseIter();
    // sll.printlist();
     sll.reverserecur(sll.head);
     sll.printlist();
