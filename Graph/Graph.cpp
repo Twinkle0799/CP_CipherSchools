@@ -12,7 +12,7 @@ class UndirectedGraph
             this->V = V;
             this->adj = new list<int>[this->V];
         }
-        //Add edge to the UndirectedGraph
+        //Add edge to the UndirectedGraph.
         void addedge(int source,int dest)
         {
             if(source>=this->V || dest>=this->V)
