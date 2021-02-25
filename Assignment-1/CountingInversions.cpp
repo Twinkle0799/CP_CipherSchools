@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-/*long countInversions(const vector<int> &arr)  //O(n^2)
+long countInversions(const vector<int> &arr)  //O(n^2)
 {  
     long count=0;
     for(int i=0;i<arr.size();i++)
@@ -16,7 +16,7 @@ using namespace std;
     }
     return count;
 
-}*/
+}
 
 int main()
 {
