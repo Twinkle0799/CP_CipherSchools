@@ -54,8 +54,8 @@ class UndirectedGraph
 //UndirectedWightedGraph using Adjacency list
 class GraphNode
 {
-    int weight,dest;
     public:
+    int weight,dest;
     GraphNode(int dest,int weight)
     {
         this->dest = dest;
@@ -81,7 +81,7 @@ class UndirectedWeightedGraph
                 return;
             }
             this->adj[source].push_back(new GraphNode(dest,weight));
-            this->adj[dest].push_back(new GraphNode(dest,weight));
+            this->adj[dest].push_back(new GraphNode(source,weight));
         }
         //Remove an edge from the UndirectedGraph
         void removedge(int source,int dest)
@@ -90,10 +90,20 @@ class UndirectedWeightedGraph
             {
                 return;
             }
-            auto itr = find(this->adj[source].begin(),this->adj[source].end(),dest);
-            this->adj[source].erase(itr);
-            auto itr1= find(this->adj[dest].begin(),this->adj[dest].end(),source);
-            this->adj[dest].erase(itr1);
+            for(auto itr=this->adj[source].begin();itr!=this->adj[source].end();itr++)
+            {
+                if((*itr)->dest==dest)
+                {
+                    this->adj[source].erase(itr);
+                }
+            }
+            for(auto itr=this->adj[dest].begin();itr!=this->adj[dest].end();itr++)
+            {
+                if((*itr)->dest==source)
+                {
+                    this->adj[dest].erase(itr);
+                }
+            }
 
         }
         //simple print
@@ -105,6 +115,66 @@ class UndirectedWeightedGraph
                 for(auto itr=this->adj[v].begin();itr!=this->adj[v].end();itr++)
                 {
                     cout<<*itr<<"->";
+                }
+                cout<<")\n";
+            }
+        }
+
+
+};
+//using pairs
+class UndirectedWeightedGraph 
+{
+    int V;
+    list<pair<int,int>*> *adj;
+    public:
+        UndirectedWeightedGraph(int V) 
+        {
+            this->V = V;
+            this->adj = new list<pair<int,int>*>[this->V];
+        }
+        //Add edge to the UndirectedGraph
+        void addedge(int source,int dest,int weight)
+        {
+            if(source>=this->V || dest>=this->V)
+            {
+                return;
+            }
+            this->adj[source].push_back(new pair(dest,weight));
+            this->adj[dest].push_back(new pair(source,weight));
+        }
+        //Remove an edge from the UndirectedGraph
+        void removedge(int source,int dest)
+        {
+            if(source>=this->V || dest>=this->V)
+            {
+                return;
+            }
+            for(auto itr=this->adj[source].begin();itr!=this->adj[source].end();itr++)
+            {
+                if((*itr)->first==dest)
+                {
+                    this->adj[source].erase(itr);
+                }
+            }
+            for(auto itr=this->adj[dest].begin();itr!=this->adj[dest].end();itr++)
+            {
+                if((*itr)->first==source)
+                {
+                    this->adj[dest].erase(itr);
+                }
+            }
+
+        }
+        //simple print
+        void PrintGraph()
+        {
+            for(int v=0;v<this->V;v++)
+            {
+                cout<<v<<"(";
+                for(auto itr=this->adj[v].begin();itr!=this->adj[v].end();itr++)
+                {
+                    cout<<"("<<(*itr)->first<<", "<<(*itr)->second<<"),";
                 }
                 cout<<")\n";
             }
